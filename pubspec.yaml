@@ -13,10 +13,10 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.1
-  mocktail: ^0.3.0
+  mocktail: ^1.0.0
   responsive_sizer: ^3.1.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  very_good_analysis: ^3.1.0
+  very_good_analysis: ^5.0.0+1
