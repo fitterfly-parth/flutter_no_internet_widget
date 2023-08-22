@@ -81,26 +81,22 @@ class InternetWidget extends StatelessWidget {
             connectivity: connectivity,
             urlLookup: lookupUrl,
           ),
-          child: Scaffold(
-            body: Builder(
-              builder: (_) {
-                return BlocBuilder<InternetCubit, InternetState>(
-                  builder: (_, state) {
-                    if (state.cubitStatus == CubitStatus.busy) {
-                      if (loadingWidget != null) {
-                        return loadingWidget!;
-                      }
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                    return Stack(
-                      children: [
-                        _getOnlineWidget(context),
-                        _getOfflineWidget(context, state.internetStatus),
-                      ],
-                    );
-                  },
+          child: Material(
+            child: BlocBuilder<InternetCubit, InternetState>(
+              builder: (_, state) {
+                if (state.cubitStatus == CubitStatus.busy) {
+                  if (loadingWidget != null) {
+                    return loadingWidget!;
+                  }
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                return Stack(
+                  children: [
+                    _getOnlineWidget(context),
+                    _getOfflineWidget(context, state.internetStatus),
+                  ],
                 );
               },
             ),

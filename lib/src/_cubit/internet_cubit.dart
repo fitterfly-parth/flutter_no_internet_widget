@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -27,10 +26,12 @@ enum CubitStatus {
   none,
 }
 
+abstract class InternetStateClass {}
+
 ///Internet State cubit
-class InternetState extends Equatable {
+class InternetState extends InternetStateClass {
   ///Internet State Constructor
-  const InternetState({
+  InternetState({
     this.internetStatus = InternetStatus.none,
     this.cubitStatus = CubitStatus.none,
   });
@@ -65,7 +66,7 @@ class InternetCubit extends Cubit<InternetState> {
   InternetCubit({
     Connectivity? connectivity,
     this.urlLookup = 'github.com',
-  }) : super(const InternetState()) {
+  }) : super(InternetState()) {
     this.connectivity = connectivity ?? Connectivity();
     _init();
   }

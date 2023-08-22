@@ -9,14 +9,12 @@ environment:
 
 dependencies:
   connectivity_plus: ^4.0.0
-  equatable: ^2.0.5
+#  equatable: ^2.0.5
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.1
-#  mocktail: ^0.3.0
-#  responsive_sizer: ^3.1.1
   sizer: ^2.0.15
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
-#  very_good_analysis: ^3.1.0
