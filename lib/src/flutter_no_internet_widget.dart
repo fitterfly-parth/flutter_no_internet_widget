@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_no_internet_widget/flutter_no_internet_widget.dart';
 import 'package:flutter_no_internet_widget/src/_cubit/internet_cubit.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:sizer/sizer.dart';
 
 ///FlutterNoInternetWidget
 class InternetWidget extends StatelessWidget {
@@ -74,39 +74,42 @@ class InternetWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveSizer(
-      builder: (context, orientation, screenType) {
-        return BlocProvider<InternetCubit>(
-          create: (context) => InternetCubit(
-            connectivity: connectivity,
-            urlLookup: lookupUrl,
-          ),
-          child: Scaffold(
-            body: Builder(
-              builder: (_) {
-                return BlocBuilder<InternetCubit, InternetState>(
-                  builder: (_, state) {
-                    if (state.cubitStatus == CubitStatus.busy) {
-                      if (loadingWidget != null) {
-                        return loadingWidget!;
-                      }
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                    return Stack(
-                      children: [
-                        _getOnlineWidget(context),
-                        _getOfflineWidget(context, state.internetStatus),
-                      ],
-                    );
-                  },
-                );
-              },
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Sizer(
+        builder: (context, orientation, screenType) {
+          return BlocProvider<InternetCubit>(
+            create: (context) => InternetCubit(
+              connectivity: connectivity,
+              urlLookup: lookupUrl,
             ),
-          ),
-        );
-      },
+            child: Scaffold(
+              body: Builder(
+                builder: (_) {
+                  return BlocBuilder<InternetCubit, InternetState>(
+                    builder: (_, state) {
+                      if (state.cubitStatus == CubitStatus.busy) {
+                        if (loadingWidget != null) {
+                          return loadingWidget!;
+                        }
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                      return Stack(
+                        children: [
+                          _getOnlineWidget(context),
+                          _getOfflineWidget(context, state.internetStatus),
+                        ],
+                      );
+                    },
+                  );
+                },
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_no_internet_widget/src/offline/offline_widget_type.dart';
 import 'package:flutter_no_internet_widget/src/offline/snackbar/snackbar_position.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:sizer/sizer.dart';
 
 /// If the Snackbar enum is selected, please enter all the values for this class
 class SnackbarWidget extends OfflineWidgetType implements IWidgetAction {
